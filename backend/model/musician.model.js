@@ -10,11 +10,11 @@ const MusicianSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  catagory:{
+  category:{
     type:String,
     required:true
   },
-  phonenumber: {
+  phoneNumber: {
     type: Number,
     required: true,
   },

@@ -9,7 +9,7 @@ const Home = () => {
 
         <div className="select  ">
           <select className="text-stone-600 h-8 mt-5 md:p-1 w-28 md:w-60 rounded ">
-            <option value="select">Select catagory...</option>
+            <option value="select">Select category...</option>
             <option value="Addis abeba">KeyBoard</option>
             <option value="Addis abeba">Giutar </option>
             <option value="Addis abeba">Drum </option>
@@ -22,7 +22,7 @@ const Home = () => {
             <option value="Addis abeba">Drum </option>
             <option value="Addis abeba">Sound Enginer</option>
           </select>
-          <button className="bg-red-700 uppercase font-bold active:bg-red-600 p-0.5 mt-1 rounded ml-2 text-xl">Search</button>
+          <button className="bg-red-700 uppercase font-bold active:bg-red-600 p-1 mt-1 rounded ml-2 text-xl">Search</button>
         </div>
       </div>
 <div className="discription-container flex flex-col md:flex-row  items-center gap-10 md:gap-20 mt-24">

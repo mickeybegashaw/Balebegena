@@ -3,11 +3,10 @@ import cloudinary from "../utils/cloudinaryConfig.js";
 
 
 // creating a new musician
-const createNewMusicaian = async (req, res) => {
-  const { name, phonenumber, address, catagory } = req.body;
+const createNewMusician = async (req, res) => {
+  const { name, phoneNumber, address, category } = req.body;
   
-  // Check for required fields
-  if (!name || !phonenumber || !address || !catagory) {
+  if (!name || !phoneNumber || !address || !category) {
     return res.status(400).json("Please enter all required fields");
   }
 
@@ -15,7 +14,7 @@ const createNewMusicaian = async (req, res) => {
   if (req.file) {
     try {
       const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Musicians", // Optional: specify a folder in Cloudinary
+        folder: "Musicians", 
       });
       imageUrl = {
         public_id: result.public_id,
@@ -28,16 +27,15 @@ const createNewMusicaian = async (req, res) => {
   }
 
   try {
-    // Create musician with or without the image
     const musician = await Musician.create({
       name,
-      phonenumber,
+      phoneNumber,
       address,
-      catagory,
-      image: imageUrl, // Save image URL and public_id if an image exists
+      category,
+      image: imageUrl, 
     });
 
-    res.status(200).json(musician); // Send back the created musician
+    res.status(200).json(musician); 
   } catch (error) {
     console.error(error);
     res.status(500).json("Could not save musician properly");
@@ -45,8 +43,8 @@ const createNewMusicaian = async (req, res) => {
 };
 
 
-// GET route to adress filter musicians by address
-const getAdressFIlterdMusician=async(req, res) => {
+// GET route to address filter musicians by address
+const getAddressFilteredMusician=async(req, res) => {
   const { address } = req.query;  // Get address from query parameters
 
   if (!address) {
@@ -54,7 +52,6 @@ const getAdressFIlterdMusician=async(req, res) => {
   }
 
   try {
-    // Find musicians whose address matches the query address
     const musicians = await Musician.find({ address: address });
 
     if (musicians.length === 0) {
@@ -71,20 +68,19 @@ const getAdressFIlterdMusician=async(req, res) => {
 
 
 
-// GET route to catagory filter musicians by address
-const getCatagoryFIlterdMusician=async(req, res) => {
-  const { catagory } = req.query;  // Get address from query parameters
+// GET route to category filter musicians by address
+const getCategoryFilteredMusician=async(req, res) => {
+  const { category } = req.query; 
 
-  if (!catagory) {
-    return res.status(400).json("catagory is required to filter musicians.");
+  if (!category) {
+    return res.status(400).json("category is required to filter musicians.");
   }
 
   try {
-    // Find musicians whose address matches the query address
-    const musicians = await Musician.find({ catagory: catagory });
+    const musicians = await Musician.find({ category: category });
 
     if (musicians.length === 0) {
-      return res.status(404).json("No musicians found with the specified catagory.");
+      return res.status(404).json("No musicians found with the specified category.");
     }
 
     res.status(200).json(musicians);
@@ -96,17 +92,15 @@ const getCatagoryFIlterdMusician=async(req, res) => {
 
 
 
-
-// GET route to filter musicians by both category and address
+//category and address filter
 const getCategoryAndAddressFilteredMusician = async (req, res) => {
-  const { category, address } = req.query;  // Get category and address from query parameters
+  const { category, address } = req.query;  
 
   if (!category || !address) {
     return res.status(400).json("Both category and address are required to filter musicians.");
   }
 
   try {
-    // Find musicians whose category and address match the query parameters
     const musicians = await Musician.find({ category: category, address: address });
 
     if (musicians.length === 0) {
@@ -131,14 +125,14 @@ const getAllMusicians= async(req,res)=>{
   }
   catch(error){
     console.error(error)
-    res.status(500).json("Can not get Musicains")
+    res.status(500).json("Can not get Musicians")
   }
 }
 
 
 
-export {createNewMusicaian,
-  getAdressFIlterdMusician,
+export {createNewMusician,
+  getAddressFilteredMusician,
   getAllMusicians,
-  getCatagoryFIlterdMusician,
+  getCategoryFilteredMusician,
   getCategoryAndAddressFilteredMusician}

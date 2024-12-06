@@ -1,8 +1,8 @@
 import express from "express";
 import multer from "multer";
-import { createNewMusicaian,
-        getAdressFIlterdMusician,
-        getCatagoryFIlterdMusician,
+import { createNewMusician,
+        getAddressFilteredMusician,
+        getCategoryFilteredMusician,
         getAllMusicians,
         getCategoryAndAddressFilteredMusician} from "../controller/musicianController.js";
 
@@ -10,10 +10,10 @@ const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
 
-router.post('/', upload.single('image'), createNewMusicaian);
-router.get("/address",getAdressFIlterdMusician );//filtered by adress
-router.get("/catagory",getCatagoryFIlterdMusician );//filtered by catagory
-router.get("/both",getCategoryAndAddressFilteredMusician );//filtered by catagory & adress
+router.post('/', upload.single('image'), createNewMusician);
+router.get("/address",getAddressFilteredMusician );//filtered by address
+router.get("/category",getCategoryFilteredMusician );//filtered by category
+router.get("/both",getCategoryAndAddressFilteredMusician );//filtered by category & address
 router.get("/",getAllMusicians );
 
 export default router;

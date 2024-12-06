@@ -1,14 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import musicianroutes from "./Routes/musicianRouter.js"
+import musicianRoutes from "./Routes/musicianRouter.js"
 dotenv.config();
 
 const app = express();
 app.use(express.json()); 
 
 
-app.use("/musician/api", musicianroutes)
+app.use("/musician/api", musicianRoutes)
 
 
 mongoose
