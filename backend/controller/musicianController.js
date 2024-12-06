@@ -1,21 +1,48 @@
 import Musician from "../model/musician.model.js"
+import cloudinary from "../utils/cloudinaryConfig.js";
 
-//post musician
-const createNewMusicaian= async (req, res) => {
-  const { name, phonenumber, address ,catagory} = req.body;
 
-  if (!name || !phonenumber || !address) {
-    return res.status(400).json("Please enter all fields");
+// creating a new musician
+const createNewMusicaian = async (req, res) => {
+  const { name, phonenumber, address, catagory } = req.body;
+  
+  // Check for required fields
+  if (!name || !phonenumber || !address || !catagory) {
+    return res.status(400).json("Please enter all required fields");
+  }
+
+  let imageUrl = null;
+  if (req.file) {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Musicians", // Optional: specify a folder in Cloudinary
+      });
+      imageUrl = {
+        public_id: result.public_id,
+        url: result.secure_url,
+      };
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json("Error uploading image to Cloudinary");
+    }
   }
 
   try {
-    const musician = await Musician.create({ name, phonenumber, address,catagory });
-    res.status(200).json(musician);
+    // Create musician with or without the image
+    const musician = await Musician.create({
+      name,
+      phonenumber,
+      address,
+      catagory,
+      image: imageUrl, // Save image URL and public_id if an image exists
+    });
+
+    res.status(200).json(musician); // Send back the created musician
   } catch (error) {
     console.error(error);
     res.status(500).json("Could not save musician properly");
   }
-}
+};
 
 
 // GET route to adress filter musicians by address
@@ -42,6 +69,8 @@ const getAdressFIlterdMusician=async(req, res) => {
 };
 
 
+
+
 // GET route to catagory filter musicians by address
 const getCatagoryFIlterdMusician=async(req, res) => {
   const { catagory } = req.query;  // Get address from query parameters
@@ -64,6 +93,8 @@ const getCatagoryFIlterdMusician=async(req, res) => {
     res.status(500).json("Error fetching musicians.");
   }
 };
+
+
 
 
 // GET route to filter musicians by both category and address
@@ -90,6 +121,8 @@ const getCategoryAndAddressFilteredMusician = async (req, res) => {
 };
 
 
+
+
 //get all musicians
 const getAllMusicians= async(req,res)=>{
   try{
@@ -104,4 +137,8 @@ const getAllMusicians= async(req,res)=>{
 
 
 
-export {createNewMusicaian,getAdressFIlterdMusician,getAllMusicians,getCatagoryFIlterdMusician,getCategoryAndAddressFilteredMusician}
+export {createNewMusicaian,
+  getAdressFIlterdMusician,
+  getAllMusicians,
+  getCatagoryFIlterdMusician,
+  getCategoryAndAddressFilteredMusician}

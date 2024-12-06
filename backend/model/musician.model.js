@@ -5,10 +5,7 @@ const MusicianSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // image: { 
-  //   type: Buffer,  // Storing image as binary data (Buffer)
-  //   required: true 
-  // },
+
   address: {
     type: String,
     required: true,
@@ -20,6 +17,14 @@ const MusicianSchema = new mongoose.Schema({
   phonenumber: {
     type: Number,
     required: true,
+  },
+  image:{
+    public_id:{
+      type:String,
+    },
+    url:{
+      type:String,
+    }
   }
 },{timestamps:true});
 
