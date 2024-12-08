@@ -2,13 +2,21 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import musicianRoutes from "./Routes/musicianRouter.js"
+import cors from "cors"
 dotenv.config();
+
 
 const app = express();
 app.use(express.json()); 
 
+app.use((req, res, next) => {
+ console.log(req.path,req.method)
+  next(); // Pass to the next middleware or route handler
+});
 
+app.use(cors()); // Enable CORS for all routes
 app.use("/musician/api", musicianRoutes)
+
 
 
 mongoose
