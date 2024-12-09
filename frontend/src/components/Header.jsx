@@ -1,6 +1,7 @@
 import { IoMdMenu } from "react-icons/io";
 import SideBar from "./SideBar";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -12,7 +13,10 @@ const Header = () => {
   return (
     <header className="bg-red-700  h-16 cursor-pointer">
       <div className="text-neutral-50 font-bold flex justify-between mx-10 md:mx-24 items-center h-16">
-        <h1 className="text-2xl md:text-3xl">ባለበገና</h1>
+        <Link to={"/"}>
+          <h1 className="text-2xl md:text-3xl">ባለበገና</h1>
+        </Link>
+
         <div className="hidden md:block">
           <span className="ml-14">My Account</span>
           <span className="ml-14">Sign in</span>
