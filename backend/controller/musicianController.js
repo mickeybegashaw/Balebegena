@@ -68,7 +68,7 @@ const getAddressFilteredMusician=async(req, res) => {
 
 
 
-// GET route to category filter musicians by address
+// GET route to category filter musicians by category
 const getCategoryFilteredMusician=async(req, res) => {
   const { category } = req.query; 
 
@@ -115,6 +115,21 @@ const getCategoryAndAddressFilteredMusician = async (req, res) => {
 };
 
 
+//get specific musician by ID
+
+
+const getSpecificMusicians = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const musicians = await Musician.findById(id);
+    if (!musicians) {
+      return res.status(404).json({ message: "musician not found" });
+    }
+    res.status(200).json(musicians);
+  } catch (error) {
+    res.status(500).json({ error: "server error" });  
+  }
+};
 
 
 //get all musicians
@@ -135,4 +150,5 @@ export {createNewMusician,
   getAddressFilteredMusician,
   getAllMusicians,
   getCategoryFilteredMusician,
-  getCategoryAndAddressFilteredMusician}
+  getCategoryAndAddressFilteredMusician,
+  getSpecificMusicians}

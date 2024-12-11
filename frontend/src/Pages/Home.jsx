@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 const Home = () => {
-  const { musicians, setMusicians } = useContext(MusicianContext);
+  const { setMusicians,setLoading } = useContext(MusicianContext);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
 
@@ -15,11 +15,11 @@ const Home = () => {
 
   const HandelAddressChange = (event) => {
     setSelectedAddress(event.target.value);
-    3;
   };
 
   const fetchDataWithCategory = async (category) => {
     try {
+      setLoading(true)
       setMusicians([])
       const response = await axios.get(
         "http://localhost:3000/musician/api/category",
@@ -32,9 +32,15 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
+    finally{
+      setLoading(false)
+    }
   };
+
+
   const fetchAll = async () => {
     try {
+      setLoading(true)
       const response = await axios.get(
         "http://localhost:3000/musician/api/");
 
@@ -42,11 +48,16 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
+    finally{
+      setLoading(false)
+    }
   };
+
+
   const fetchDataWithAddress = async (address) => {
     try {
+      setLoading(true)
       setMusicians([])
-
       const response = await axios.get(
         "http://localhost:3000/musician/api/address",
         {
@@ -58,11 +69,14 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
+    finally{
+      setLoading(false)
+    }
   };
   const fetchDataWithAddressAndCategory = async (address, category) => {
     try {
+      setLoading(true)
       setMusicians([])
-
       const response = await axios.get(
         "http://localhost:3000/musician/api/both",
         {
@@ -73,6 +87,9 @@ const Home = () => {
       setMusicians(response.data);
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      setLoading(false)
     }
   };
   const handelSearchMusician = () => {
