@@ -58,10 +58,10 @@ const SearchResults = () => {
                       src={musician.image.url}
                       alt="musician image"
                     />
-                    <h2 className="bg-stone-900 font-bold text-2xl uppercase text-center">
+                    <h2 className="bg-stone-900 font-bold text-2xl md:text-lg lg:text-2xl uppercase text-center">
                       {musician.name}
                     </h2>
-                    <p className="text-xl uppercase text-center">{musician.category}</p>
+                    <p className="text-xl md:text-base uppercase text-center">{musician.category}</p>
                     <p className="text-stone-400">
                       <span className="inline-block">
                         <SlLocationPin />
