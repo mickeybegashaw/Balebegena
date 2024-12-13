@@ -11,11 +11,22 @@ const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
 
+//post musicians
 router.post('/', upload.single('image'), createNewMusician);
-router.get("/address",getAddressFilteredMusician );//filtered by address
-router.get("/category",getCategoryFilteredMusician );//filtered by category
-router.get("/both",getCategoryAndAddressFilteredMusician );//filtered by category & address
-router.get("/",getAllMusicians ); //get all
-router.get("/:id",getSpecificMusicians );// get specific
+
+//get the address filtered musician
+router.get("/address",getAddressFilteredMusician );
+
+//get the category filtered musician
+router.get("/category",getCategoryFilteredMusician );
+
+//get the category and address filtered musician
+router.get("/both",getCategoryAndAddressFilteredMusician );
+
+//get the all musician
+router.get("/",getAllMusicians ); 
+
+//get the specific  musician
+router.get("/:id",getSpecificMusicians );
 
 export default router;
