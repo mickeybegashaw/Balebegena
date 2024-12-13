@@ -1,4 +1,5 @@
-Balebegena project is a web app where users can search for Gospel musicians in ethiopia , view their profiles, and get details like name, category, address, and contact information.
+#Balebegena 
+project is a web app where users can search for Gospel musicians in ethiopia , view their profiles, and get details like name, category, address, and contact information.
 This project uses the following tech stack:
 
 Frontend: React for building the user interface, along with React Context for state management.
