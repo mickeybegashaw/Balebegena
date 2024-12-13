@@ -11,10 +11,10 @@ app.use(express.json());
 
 app.use((req, res, next) => {
  console.log(req.path,req.method)
-  next(); // Pass to the next middleware or route handler
+  next(); 
 });
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors()); 
 app.use("/musician/api", musicianRoutes)
 
 
@@ -23,7 +23,6 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
 
-    // Start the server
     app.listen(process.env.PORT, () => {
       console.log("Server is connected to DB and running on port", process.env.PORT);
     });
