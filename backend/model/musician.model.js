@@ -28,7 +28,6 @@ const MusicianSchema = new mongoose.Schema({
   }
 },{timestamps:true});
 
-// Creating the model
 const Musician = mongoose.model('Musician', MusicianSchema);
 
 export default Musician;

@@ -19,8 +19,8 @@ const Header = () => {
 
         <div className="hidden md:block">
           <span className="ml-14">My Account</span>
-          <span className="ml-14">Sign in</span>
-          <span className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1">
+          <span title="Sign in to My account" className="ml-14">Sign in</span>
+          <span title="Register Musician" className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1">
             Join now
           </span>
         </div>

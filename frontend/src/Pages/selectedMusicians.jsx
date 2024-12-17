@@ -27,6 +27,7 @@ const SelectedMusicians = () => {
 
           {/* Phone button with a link to dial the number */}
           <a
+          title="Click to call"
             href={`tel:+${selectedMusician.phoneNumber}`}
             className="bg-green-600 text-white px-4 py-2 rounded-md inline-flex items-center"
           >
