@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import musicianRoutes from "./Routes/musicianRouter.js"
+import userRouter from './Routes/userRouter.js'
 import cors from "cors"
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 app.use(cors()); 
 app.use("/musician/api", musicianRoutes)
+app.use('/user/api', userRouter)
 
 
 
