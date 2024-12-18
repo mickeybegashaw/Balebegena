@@ -115,7 +115,7 @@ const Home = () => {
           <MoonLoader color="red" />
         </div>
       ) : (
-        <div className="home bg-[url('./assets/worship.png')]  bg-center bg-cover h-full text-neutral-50">
+        <div className="home bg-[url('./assets/worship.png')]  bg-center bg-cover min-h-screen text-neutral-50">
           <div className="homeMassage p-10 md:p-24">
             <h1 className="text-4xl uppercase font-bold md:text-4xl lg:text-5xl">
               Finding Gospel Musicians?

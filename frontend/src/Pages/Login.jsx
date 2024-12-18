@@ -18,6 +18,7 @@ const Login = () => {
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
       <div className="bg-white p-3 text-center mt-5 rounded-lg flex flex-col items-center w-11/12 md:w-2/3">
         <h1 className="text-3xl md:text-4xl">Welcome Back</h1>
+        <h1 className="text-2xl md:text-4xl">Login</h1>
         <br />
       
         <p>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ onClose }) => {
   return (
@@ -17,21 +18,30 @@ const SideBar = ({ onClose }) => {
         </button>
         <nav>
           <ul>
-            <li className="mb-4">
-              <a href="#" className="text-gray-700 hover:text-red-500">
+            <Link>
+             <li className="mb-4" onClick={onClose}>
+              <span className="text-gray-700 hover:text-red-500">
                 My Account
-              </a>
+              </span>
             </li>
-            <li className="mb-4">
-              <a href="#" className="text-gray-700 hover:text-red-500">
-                Sign In 
-              </a>
+            </Link>
+           
+           <Link to={'/user/login'}>
+           <li className="mb-4" onClick={onClose}>
+              <span  className="text-gray-700 hover:text-red-500">
+                Log In 
+              </span>
             </li>
-            <li className="mb-4">
-              <a href="#" className="text-gray-700 hover:text-red-500">
-                Join Now
-              </a>
+           </Link>
+            
+            <Link to={'/user/register'}>
+            <li className="mb-4" onClick={onClose}>
+              <span className="text-gray-700 hover:text-red-500">
+                Register Now
+              </span>
             </li>
+            </Link>
+            
            
           </ul>
         </nav>
