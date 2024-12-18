@@ -23,9 +23,9 @@ const Header = () => {
           <span title="Sign in to My account" className="ml-14">Log in</span>
           </Link>
 
-          <Link to={'/user/signup'}>
+          <Link to={'/user/register'}>
           <span title="Register Musician" className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1">
-            Join now
+            Register
           </span>
           </Link>
         </div>

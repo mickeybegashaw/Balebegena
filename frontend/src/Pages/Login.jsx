@@ -7,7 +7,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handelLinkClick = () => {
-    navigate("/user/signup");
+    navigate("/user/register");
   };
 
   const togglePassword = () => {

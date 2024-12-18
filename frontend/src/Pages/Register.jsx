@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggling
 
-const Signup = () => {
+const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -17,7 +17,7 @@ const Signup = () => {
   return (
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
       <div className="bg-white p-3 text-center mt-5 rounded-lg flex flex-col items-center w-11/12 md:w-2/3">
-        <h1 className="text-3xl md:text-4xl">Join now</h1>
+        <h1 className="text-3xl md:text-4xl">Register now</h1>
         <br />
         <p>
           You're on your way to connecting with other musicians and churches.
@@ -74,7 +74,7 @@ const Signup = () => {
             />
           </label>
           <button className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600">
-            Sign up
+            Register
           </button>
         </form>
       </div>
@@ -82,4 +82,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

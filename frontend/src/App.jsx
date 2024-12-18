@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Home from "./Pages/Home";
 import Login from "./Pages/login.jsx";
-import Signup from "./Pages/Signup.jsx";
+import Register from "./Pages/Register.jsx";
 import SearchResults from "./Pages/SearchResults";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SelectedMusicians from "./Pages/selectedMusicians.jsx";
@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/search-results" element={<SearchResults />} />
         <Route path="/selected-musician" element={<SelectedMusicians/>}/>
         <Route path="/user/login" element={<Login/>}/>
-        <Route path="/user/signup" element={<Signup/>}/>
+        <Route path="/user/register" element={<Register/>}/>
         <Route
           path="*"
           element={
