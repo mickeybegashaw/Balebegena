@@ -20,7 +20,7 @@ const Header = () => {
         <div className="hidden md:block">
           <span className="ml-14">My Account</span>
           <Link to={'/user/login'}>
-          <span title="Sign in to My account" className="ml-14">Log in</span>
+          <span title="Log in to My account" className="ml-14">Log in</span>
           </Link>
 
           <Link to={'/user/register'}>

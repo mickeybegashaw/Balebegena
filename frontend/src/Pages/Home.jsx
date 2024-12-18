@@ -173,9 +173,9 @@ const Home = () => {
               </p>
             </div>
             <div className="discription w-full backdrop-brightness-50 p-10">
-              <h2 className="font-bold text-xl text-red-700">Join Now</h2>
+              <h2 className="font-bold text-xl text-red-700">Register Now</h2>
               <p className="text-l mt-1">
-                ክርሰቲያን ሙዚቀኞች Join now በማለት የአገልግሎት እድላችሁን ማስፋት እንዲሁም ሌሎች ሙዚቀኞችን
+                ክርሰቲያን ሙዚቀኞች Register now በማለት የአገልግሎት እድላችሁን ማስፋት እንዲሁም ሌሎች ሙዚቀኞችን
                 ማግኘት ትቸላላችሁ{" "}
               </p>
             </div>
