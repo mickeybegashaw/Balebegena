@@ -19,10 +19,15 @@ const Header = () => {
 
         <div className="hidden md:block">
           <span className="ml-14">My Account</span>
-          <span title="Sign in to My account" className="ml-14">Sign in</span>
+          <Link to={'/user/login'}>
+          <span title="Sign in to My account" className="ml-14">Log in</span>
+          </Link>
+
+          <Link to={'/user/signup'}>
           <span title="Register Musician" className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1">
             Join now
           </span>
+          </Link>
         </div>
         <span
           onClick={toggleSidebar}
