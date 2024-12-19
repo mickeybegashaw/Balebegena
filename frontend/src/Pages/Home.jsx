@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { CITIES } from "../Cites.js";
 import { MusicianContext } from "../context/musiciansContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { MoonLoader } from "react-spinners"; // Ensure you have this import
+import { MoonLoader } from "react-spinners";
 import axios from "axios";
 const Home = () => {
   const { setMusicians, setLoading, loading } = useContext(MusicianContext);

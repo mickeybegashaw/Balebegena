@@ -1,10 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggling
+import { useContext, useState } from "react";
+import { BiShow, BiHide } from "react-icons/bi"; 
+import { AuthContext } from "../context/userContext.jsx";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [passWord, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const { user , setUser , error, setError , loading, setLoading } =useContext(AuthContext)
 
   const handelLinkClick = () => {
     navigate("/user/login");
@@ -13,6 +21,31 @@ const Register = () => {
   const togglePassword = () => {
     setShowPassword((prevState) => !prevState);
   };
+  const handelRegisterSubmit = async(e)=>{
+    e.preventDefault()
+    try {
+      setLoading(true)
+      setError(null)
+      const response = await axios.post('http://localhost:3000/user/api/register', {
+        firstName:firstName,
+        lastName:lastName,
+        password:passWord,
+        email:email
+      })
+      // if(!response.ok){
+      //   setError(response.data)
+      // }
+      setUser(response.data)
+      console.log(user)
+      
+    } catch (error) {
+      console.log(error)   
+    }
+    finally{
+      setLoading(false)
+    }
+    
+  }
 
   return (
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
@@ -35,21 +68,26 @@ const Register = () => {
         <br />
         <hr className="w-full mb-10 border-stone-500" />
 
-        <form id="registerForm">
+        <form onSubmit={handelRegisterSubmit} id="registerForm">
           <label className="text-xl">
             E-mail Address
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
+
           <label className="text-xl">
             Password
             <div className="relative">
               <input
-                required 
-                minlength="4"
+                onChange={(e) => setPassword(e.target.value)}
+                value={passWord}
+                required
+                minLength={4}
                 type={showPassword ? "text" : "password"}
                 className="mt-3 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -62,9 +100,12 @@ const Register = () => {
               </button>
             </div>
           </label>
+
           <label className="text-xl">
             First Name
             <input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -73,12 +114,16 @@ const Register = () => {
           <label className="text-xl">
             Last Name
             <input
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
-          <button className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600">
+          <button
+          type="submit" 
+          className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600">
             Register
           </button>
         </form>

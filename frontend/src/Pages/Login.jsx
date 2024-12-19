@@ -5,6 +5,8 @@ import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggli
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handelLinkClick = () => {
     navigate("/user/register");
@@ -13,6 +15,11 @@ const Login = () => {
   const togglePassword = () => {
     setShowPassword((prevState) => !prevState);
   };
+  
+  const handelLoginSubmit = async(e)=>{
+    e.preventDefault()
+    console.log(email,password)
+  }
 
   return (
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
@@ -20,7 +27,7 @@ const Login = () => {
         <h1 className="text-3xl md:text-4xl">Welcome Back</h1>
         <h1 className="text-2xl md:text-4xl">Login</h1>
         <br />
-      
+
         <p>
           If you are not a member of Balebegena.com, please{" "}
           <span
@@ -33,21 +40,25 @@ const Login = () => {
         <br />
         <hr className="w-full mb-10 border-stone-500" />
 
-        <form id="loginForm">
+        <form onSubmit={handelLoginSubmit} id="loginForm">
           <label className="text-xl">
             E-mail Address
             <input
+              onChange={(e) => setEmail(e.target.value)}
               required
               type="email"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
+
+
           <label className="text-xl">
             Password
             <div className="relative">
               <input
+              onChange={(e)=>setPassword(e.target.value)}
                 required
-                minLength="4"
+                minLength={4}
                 type={showPassword ? "text" : "password"}
                 className="mt-3 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -60,7 +71,10 @@ const Login = () => {
               </button>
             </div>
           </label>
-          <button className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600">
+          <button
+            type="submit"
+            className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600"
+          >
             Log in
           </button>
         </form>
