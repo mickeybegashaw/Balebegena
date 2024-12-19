@@ -37,7 +37,8 @@ const Login = () => {
           <label className="text-xl">
             E-mail Address
             <input
-              type="text"
+              required
+              type="email"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
@@ -45,6 +46,8 @@ const Login = () => {
             Password
             <div className="relative">
               <input
+                required
+                minLength="4"
                 type={showPassword ? "text" : "password"}
                 className="mt-3 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

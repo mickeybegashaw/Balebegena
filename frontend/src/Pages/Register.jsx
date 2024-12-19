@@ -39,6 +39,7 @@ const Register = () => {
           <label className="text-xl">
             E-mail Address
             <input
+              required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -47,6 +48,8 @@ const Register = () => {
             Password
             <div className="relative">
               <input
+                required 
+                minlength="4"
                 type={showPassword ? "text" : "password"}
                 className="mt-3 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -62,6 +65,7 @@ const Register = () => {
           <label className="text-xl">
             First Name
             <input
+              required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -69,6 +73,7 @@ const Register = () => {
           <label className="text-xl">
             Last Name
             <input
+              required
               type="text"
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
