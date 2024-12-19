@@ -35,7 +35,7 @@ const Register = () => {
         <br />
         <hr className="w-full mb-10 border-stone-500" />
 
-        <form>
+        <form id="registerForm">
           <label className="text-xl">
             E-mail Address
             <input

@@ -33,7 +33,7 @@ const Login = () => {
         <br />
         <hr className="w-full mb-10 border-stone-500" />
 
-        <form>
+        <form id="loginForm">
           <label className="text-xl">
             E-mail Address
             <input

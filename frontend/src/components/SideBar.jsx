@@ -23,7 +23,7 @@ const SideBar = ({ onClose }) => {
               <span className="text-gray-700 hover:text-red-500">
                 My Account
               </span>
-            </li>
+            </li> 
             </Link>
            
            <Link to={'/user/login'}>
