@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { BiShow, BiHide } from "react-icons/bi"; 
+import { BiShow, BiHide } from "react-icons/bi";
 import { AuthContext } from "../context/userContext.jsx";
 import axios from "axios";
+import { FadeLoader } from "react-spinners";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const { user , setUser , error, setError , loading, setLoading } =useContext(AuthContext)
+  const { user, setUser, error, setError, loading, setLoading } =
+    useContext(AuthContext);
 
   const handelLinkClick = () => {
     navigate("/user/login");
@@ -21,31 +23,38 @@ const Register = () => {
   const togglePassword = () => {
     setShowPassword((prevState) => !prevState);
   };
-  const handelRegisterSubmit = async(e)=>{
-    e.preventDefault()
+
+  const handelRegisterSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setError(null);
+
     try {
-      setLoading(true)
-      setError(null)
-      const response = await axios.post('http://localhost:3000/user/api/register', {
-        firstName:firstName,
-        lastName:lastName,
-        password:passWord,
-        email:email
-      })
-      // if(!response.ok){
-      //   setError(response.data)
-      // }
-      setUser(response.data)
-      console.log(user)
-      
+      const response = await axios.post(
+        "http://localhost:3000/user/api/register",
+        {
+          firstName: firstName,
+          lastName: lastName,
+          password: passWord,
+          email: email,
+        }
+      );
+
+      if (response.status >= 200 && response.status < 300) {
+        setError(null);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        setLoading(false);
+        setUser(response.data);
+      } else {
+        setLoading(false);
+        setError(response.data);
+      }
     } catch (error) {
-      console.log(error)   
+      setLoading(false);
+      setError(error.response ? error.response.data : "An error occurred");
     }
-    finally{
-      setLoading(false)
-    }
-    
-  }
+  };
 
   return (
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
@@ -121,10 +130,13 @@ const Register = () => {
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
+          <p className="text-red-600 text-xl m:text-2xl">{error}</p>
           <button
-          type="submit" 
-          className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600">
-            Register
+            disabled={loading}
+            type="submit"
+            className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600"
+          >
+            {loading ? <FadeLoader color={"white"} size={5} /> : "Register"}
           </button>
         </form>
       </div>
