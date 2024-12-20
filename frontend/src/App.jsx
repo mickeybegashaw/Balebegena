@@ -5,6 +5,7 @@ import Register from "./Pages/Register.jsx";
 import SearchResults from "./Pages/SearchResults";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SelectedMusicians from "./Pages/selectedMusicians.jsx";
+import MusicianPostingFom from "./Pages/MusicianPostingFom.jsx";
 const App = () => {
   return (
     <Router>
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/selected-musician" element={<SelectedMusicians/>}/>
         <Route path="/user/login" element={<Login/>}/>
         <Route path="/user/register" element={<Register/>}/>
+        <Route path="/musician-post" element={<MusicianPostingFom/>}/>
         <Route
           path="*"
           element={
