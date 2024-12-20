@@ -4,9 +4,9 @@ import cloudinary from "../utils/cloudinaryConfig.js";
 
 // creating a new musician
 const createNewMusician = async (req, res) => {
-  const { name, phoneNumber, address, category } = req.body;
+  const { name, phoneNumber, address, category ,yearsPlayingMusic , description} = req.body;
   
-  if (!name || !phoneNumber || !address || !category) {
+  if (!name || !phoneNumber || !address || !category || !yearsPlayingMusic || !description) {
     return res.status(400).json("Please enter all required fields");
   }
 
@@ -32,6 +32,8 @@ const createNewMusician = async (req, res) => {
       phoneNumber,
       address,
       category,
+      description,
+      yearsPlayingMusic,
       image: imageUrl, 
     });
 
