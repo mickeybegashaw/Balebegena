@@ -7,7 +7,7 @@ import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggli
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, error, setError, loading, setLoading } =
+  const { user, setUser, logInError, setLogInError, loading, setLoading } =
   useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     setLoading(true);
-    setError(null);
+    setLogInError(null);
 
     try {
       const response = await axios.post(
@@ -38,17 +38,17 @@ const Login = () => {
       );
 
       if (response.status >= 200 && response.status < 300) {
-        setError(null);
+        setLogInError(null);
         localStorage.setItem("user", JSON.stringify(response.data));
         setLoading(false);
         setUser(response.data);
       } else {
         setLoading(false);
-        setError(response.data);
+        setLogInError(response.data);
       }
     } catch (error) {
       setLoading(false);
-      setError(error.response ? error.response.data : "An error occurred");
+      setLogInError(error.response ? error.response.data : "An error occurred");
     }
   };
 
@@ -103,7 +103,7 @@ const Login = () => {
               </button>
             </div>
           </label>
-          <p className="text-red-600 text-xl m:text-2xl">{error}</p>
+          {logInError&&<p className="text-red-600 text-xl m:text-2xl">{logInError}</p>} 
 
           <button
             disabled={loading}

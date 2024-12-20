@@ -13,7 +13,7 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const { user, setUser, error, setError, loading, setLoading } =
+  const { user, setUser, setRegisterError, registerError, loading, setLoading } =
     useContext(AuthContext);
 
   const handelLinkClick = () => {
@@ -28,7 +28,7 @@ const Register = () => {
     e.preventDefault();
 
     setLoading(true);
-    setError(null);
+    setRegisterError(null);
 
     try {
       const response = await axios.post(
@@ -42,17 +42,17 @@ const Register = () => {
       );
 
       if (response.status >= 200 && response.status < 300) {
-        setError(null);
+        setRegisterError(null);
         localStorage.setItem("user", JSON.stringify(response.data));
         setLoading(false);
         setUser(response.data);
       } else {
         setLoading(false);
-        setError(response.data);
+        setRegisterError(response.data);
       }
     } catch (error) {
       setLoading(false);
-      setError(error.response ? error.response.data : "An error occurred");
+      setRegisterError(error.response ? error.response.data : "An error occurred");
     }
   };
 
@@ -130,7 +130,7 @@ const Register = () => {
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
-          <p className="text-red-600 text-xl m:text-2xl">{error}</p>
+         {registerError&&<p className="text-red-600 text-xl m:text-2xl">{registerError}</p>} 
           <button
             disabled={loading}
             type="submit"
