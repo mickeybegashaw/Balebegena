@@ -1,9 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState , useContext } from "react";
+import axios from "axios";
+import { FadeLoader } from "react-spinners";
+import { AuthContext } from "../context/userContext";
 import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggling
 
 const Login = () => {
   const navigate = useNavigate();
+  const { user, setUser, error, setError, loading, setLoading } =
+  useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,11 +21,36 @@ const Login = () => {
   const togglePassword = () => {
     setShowPassword((prevState) => !prevState);
   };
-  
-  const handelLoginSubmit = async(e)=>{
-    e.preventDefault()
-    console.log(email,password)
-  }
+
+  const handelLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/api/logIn",
+        {
+          email: email,
+          password: password,
+        }
+      );
+
+      if (response.status >= 200 && response.status < 300) {
+        setError(null);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        setLoading(false);
+        setUser(response.data);
+      } else {
+        setLoading(false);
+        setError(response.data);
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(error.response ? error.response.data : "An error occurred");
+    }
+  };
 
   return (
     <div className="bg-stone-400 flex flex-1 items-center flex-col min-w-full min-h-screen">
@@ -44,6 +75,7 @@ const Login = () => {
           <label className="text-xl">
             E-mail Address
             <input
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               type="email"
@@ -51,12 +83,12 @@ const Login = () => {
             />
           </label>
 
-
           <label className="text-xl">
             Password
             <div className="relative">
               <input
-              onChange={(e)=>setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 required
                 minLength={4}
                 type={showPassword ? "text" : "password"}
@@ -71,11 +103,14 @@ const Login = () => {
               </button>
             </div>
           </label>
+          <p className="text-red-600 text-xl m:text-2xl">{error}</p>
+
           <button
+            disabled={loading}
             type="submit"
             className="w-full h-20 text-white text-2xl rounded-xl mt-5 bg-red-700 hover:bg-red-600"
           >
-            Log in
+            {loading ? <FadeLoader color={"white"} size={5} /> : "Login"}
           </button>
         </form>
       </div>
