@@ -23,7 +23,7 @@ const register= async (req,res)=>{
     //already exist validator 
     const emailAlreadyExists = await User.findOne({email})
     if (emailAlreadyExists) {
-      return res.status(400).json("User Already exists with this Email")
+      return res.status(400).json("User Already exists with this Email Try Another")
     }
     //encrypt pass
     const encPassword = await bcrypt.hash(password, 10)
@@ -57,12 +57,12 @@ const logIn= async (req,res)=>{
 
     const user = await User.findOne({email})
     if (!user) {
-      return res.status(400).json("Invalid Email")
+      return res.status(400).json("Invalid Email try with valid Email")
     }
     //match pass
     const much = await bcrypt.compare(password , user.password )
     if (!much) {
-      return res.status(400).json("Incorrect password")
+      return res.status(400).json("Incorrect password please Try again ")
     }
 
     //send token
