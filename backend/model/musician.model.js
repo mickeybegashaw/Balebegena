@@ -18,6 +18,14 @@ const MusicianSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  yearsPlayingMusic: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   image:{
     public_id:{
       type:String,
