@@ -37,7 +37,7 @@ const register= async (req,res)=>{
     
     const token = createToken(user._id)
 
-    res.status(200).json( {firstName , token })
+    res.status(200).json( {email , token })
 
   } catch (error) {
     console.log(error)
@@ -62,13 +62,13 @@ const logIn= async (req,res)=>{
     //match pass
     const much = await bcrypt.compare(password , user.password )
     if (!much) {
-      return res.status(200).json("Incorrect password")
+      return res.status(400).json("Incorrect password")
     }
 
     //send token
     if ( user && much ) {
       const token = createToken(user._id)
-      return res.status(200).json({token})
+      return res.status(200).json({email, token})
     }
 
   } catch (error) {
