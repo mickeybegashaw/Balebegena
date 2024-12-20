@@ -1,13 +1,20 @@
 import { IoMdMenu } from "react-icons/io";
 import SideBar from "./SideBar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate =useNavigate()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const { user , setUser} = useContext(AuthContext);
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
+  };
+  const handelLogOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/")
   };
 
   return (
@@ -18,16 +25,33 @@ const Header = () => {
         </Link>
 
         <div className="hidden md:block">
-          <span className="ml-14">My Account</span>
-          <Link to={'/user/login'}>
-          <span title="Log in to My account" className="ml-14">Log in</span>
-          </Link>
+          {user &&  <>
+           <span className="ml-14">Post Musician</span>
+           <span className="ml-14">My Account</span>
+           <span className="ml-14" onClick={handelLogOut}>Log out</span>
+           </>
+            }
+          
+         
+         
+          {!user && (
+            <>
+              <Link to={"/user/login"}>
+                <span title="Log in to My account" className="ml-14">
+                  Log in
+                </span>
+              </Link>
 
-          <Link to={'/user/register'}>
-          <span title="Register Musician" className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1">
-            Register
-          </span>
-          </Link>
+              <Link to={"/user/register"}>
+                <span
+                  title="Register Musician"
+                  className="ml-14 bg-red-500 hover:bg-red-800 rounded p-1"
+                >
+                  Register
+                </span>
+              </Link>
+            </>
+          )}
         </div>
         <span
           onClick={toggleSidebar}
