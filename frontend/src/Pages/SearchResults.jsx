@@ -4,6 +4,7 @@ import { SlLocationPin } from "react-icons/sl";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
+import defaultImage from '../assets/avater.png'
 
 const SearchResults = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const SearchResults = () => {
                 >
                   <img
                     className="w-full h-2/3"
-                    src={musician.image.url}
+                    src={musician.image.url || defaultImage}
                     alt="musician image"
                   />
                   <h2 className="bg-stone-900 font-bold text-2xl md:text-lg lg:text-2xl uppercase text-center">

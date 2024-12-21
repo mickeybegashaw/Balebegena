@@ -12,7 +12,7 @@ const upload = multer({ dest: "uploads/" });
 const router = express.Router();
 
 //post musicians
-router.post('/', upload.single('image'), createNewMusician);
+router.post('/', upload.single('profilePicture'), createNewMusician);
 
 //get the address filtered musician
 router.get("/address",getAddressFilteredMusician );
