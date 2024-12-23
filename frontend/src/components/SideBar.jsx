@@ -41,6 +41,13 @@ const SideBar = ({ onClose }) => {
             )}
             {user && (
               <div>
+                <Link to={"/musician-post"}>
+                  <li className="mb-4" onClick={onClose}>
+                    <span className="text-gray-700 hover:text-red-500">
+                      Post Musician
+                    </span>
+                  </li>
+                </Link>
                 <Link>
                   <li className="mb-4" onClick={onClose}>
                     <span className="text-gray-700 hover:text-red-500">

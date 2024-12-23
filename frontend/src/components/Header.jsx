@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { user , setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
   const handelLogOut = () => {
     localStorage.removeItem("user");
     setUser(null);
-    navigate("/")
+    navigate("/");
   };
 
   return (
@@ -25,15 +25,18 @@ const Header = () => {
         </Link>
 
         <div className="hidden md:block">
-          {user &&  <>
-           <span className="ml-14">Post Musician</span>
-           <span className="ml-14">My Account</span>
-           <span className="ml-14" onClick={handelLogOut}>Log out</span>
-           </>
-            }
-          
-         
-         
+          {user && (
+            <>
+              <Link to={"/musician-post"}>
+                <span className="ml-14">Post Musician</span>
+              </Link>
+              <span className="ml-14">My Account</span>
+              <span className="ml-14" onClick={handelLogOut}>
+                Log out
+              </span>
+            </>
+          )}
+
           {!user && (
             <>
               <Link to={"/user/login"}>
