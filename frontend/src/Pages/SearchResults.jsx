@@ -4,7 +4,8 @@ import { SlLocationPin } from "react-icons/sl";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
-import defaultImage from '../assets/avater.png'
+import defaultImage from "../assets/avater.png";
+import { formatDistanceToNow } from "date-fns";
 
 const SearchResults = () => {
   const navigate = useNavigate();
@@ -45,13 +46,12 @@ const SearchResults = () => {
             <p className="text-stone-500">Ethiopia</p>
           </div>
 
-        
           {musicians.length === 0 ? (
             <h1 className="text-xl text-center text-teal-50 font-bold">
               There are no musicians! Please try another search.
             </h1>
           ) : (
-            <div className="bg-white rounded w-11/12 flex flex-wrap justify-around p-5 gap-3 h-full">
+            <div className="bg-white rounded w-11/12 flex flex-wrap  justify-around p-5 gap-3 h-full">
               {musicians.map((musician) => (
                 <div
                   onClick={() => handelSelectedMusician(musician._id)} // Handle musician selection
@@ -59,7 +59,7 @@ const SearchResults = () => {
                   className="bg-stone-700 text-white w-full h-1/3 mb-5 md:w-1/4"
                 >
                   <img
-                    className="w-full h-2/3"
+                    className="w-full h-60 object-cover"
                     src={musician.image.url || defaultImage}
                     alt="musician image"
                   />
@@ -75,11 +75,16 @@ const SearchResults = () => {
                     </span>
                     {musician.address}
                   </p>
+                  <p className="text-stone-400">
+                    {formatDistanceToNow(new Date(musician.createdAt), {
+                      addSuffix: true,
+                    })}
+                  </p>
                 </div>
               ))}
             </div>
           )}
-       </>
+        </>
       )}
     </div>
   );

@@ -42,7 +42,7 @@ const MusicianPostingFom = () => {
       return;
     }
 
-    const description = `Hello, my name is ${name}. I am a musician based in ${city}. I specialize in playing the ${instrument} and have ${yearsPlaying} years of experience. Feel free to contact me at ${phoneNumber}.`;
+    const description = `Hello, my name is ${name}. I am a Gospel musician based in ${city}. I specialize in playing the ${instrument} and have ${yearsPlaying} years of experience. Feel free to contact me i am ready for serving God with your church.`;
 
     setFormData({ ...formData, description });
   };
