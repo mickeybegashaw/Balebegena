@@ -144,7 +144,7 @@ const Home = () => {
               <select
                 value={selectedAddress}
                 onChange={HandelAddressChange}
-                className="text-stone-600 h-8 mt-5 md:p-1 ml-3 w-28 md:w-60 rounded"
+                className="text-stone-600 h-8 mt-5 md:p-1  ml-3 mr-2 w-28 md:w-60 rounded"
               >
                 <option value="" disabled>
                   City, Region
@@ -158,7 +158,7 @@ const Home = () => {
 
               <button
                 onClick={handelSearchMusician}
-                className="bg-red-700 uppercase font-bold active:bg-red-600 p-1 mt-1 rounded ml-2 text-xl"
+                className="bg-red-700  font-bold active:bg-red-600 p-1 px-2 mt-1 rounded  text-xl"
               >
                 Search
               </button>
