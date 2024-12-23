@@ -9,28 +9,30 @@ import MusicianPostingFom from "./Pages/MusicianPostingFom.jsx";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { MusicianContext } from "./context/musiciansContext.jsx";
+import NotFound from "./Pages/notFound.jsx";
 
 const App = () => {
-  const { selectedMusician , musicians } = useContext(MusicianContext);
+  const { selectedMusician, musicians } = useContext(MusicianContext);
   return (
     <Router>
       <Header />
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search-results" element={musicians ? <SearchResults /> : <Navigate to={"/"}/>} />
-        <Route path="/selected-musician" element={selectedMusician? < SelectedMusicians/>: <Navigate to={"/"}/> }/>
-        <Route path="/user/login" element={<Login/>}/>
-        <Route path="/user/register" element={<Register/>}/>
-        <Route path="/musician-post" element={<MusicianPostingFom/>}/>
         <Route
-          path="*"
+          path="/search-results"
+          element={musicians ? <SearchResults /> : <Navigate to={"/"} />}
+        />
+        <Route
+          path="/selected-musician"
           element={
-            <h1 className="text-center font-bold text-3xl md:text-4xl mt-10">
-              404 - Page Not Found
-            </h1>
+            selectedMusician ? <SelectedMusicians /> : <Navigate to={"/"} />
           }
         />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/register" element={<Register />} />
+        <Route path="/musician-post" element={<MusicianPostingFom />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
