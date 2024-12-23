@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const MusicianContext = createContext();
 
 const MusicianContextProvider = ({ children }) => {
-  const [musicians, setMusicians] = useState([]);
+  const [musicians, setMusicians] = useState(null);
   const [selectedMusician,setSelectedMusician]=useState(null)
   const [loading,setLoading]=useState(false)
   const [error,setError]=useState(false)

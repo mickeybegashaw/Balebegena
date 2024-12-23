@@ -3,7 +3,7 @@ import { MusicianContext } from "../context/musiciansContext";
 import { FaPhone } from "react-icons/fa";
 
 const SelectedMusicians = () => {
-  const { selectedMusician, loading } = useContext(MusicianContext);
+  const { selectedMusician } = useContext(MusicianContext);
 
   return (
     <>
@@ -13,6 +13,7 @@ const SelectedMusicians = () => {
           src={selectedMusician.image.url}
           alt={`Image of ${selectedMusician.name}`}
         />
+          <p className="font-serif ">"{selectedMusician.description}"</p>
         <h2 className="text-3xl font-bold mb-2">{selectedMusician.name}</h2>
         <h3 className="text-xl mb-2">Category: {selectedMusician.category}</h3>
         <h4 className="text-lg mb-2">Address: {selectedMusician.address}</h4>
