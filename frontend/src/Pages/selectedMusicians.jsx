@@ -31,13 +31,32 @@ const SelectedMusicians = () => {
             alt={`Image of ${selectedMusician.name}`}
           />
           <h2 className="text-xl font-bold leading-10">About</h2>
-          <hr className="border-stone-500 leading-7"/>
-          <p className="leading-7">"{selectedMusician.description}"</p>
-          <h2 className="leading-10"> <strong>Name</strong> : {selectedMusician.name}</h2>
-          <h2 className="leading-10"> <strong>Instruments</strong> : {selectedMusician.category}</h2>
-          <h2 className="leading-10"> <strong>Years of experiences</strong> : {selectedMusician.yearsPlayingMusic} years</h2>
-          <h2 className=" leading-10"> <strong>Address</strong> : {selectedMusician.address}</h2>
-          <h2 className=" leading-10"> <strong>Joined ባለበገና</strong> : {formatDistanceToNow(new Date(selectedMusician.createdAt) , {addSuffix:true}) }</h2>
+          <hr className="border-stone-500 leading-10" />
+          <p className="leading-10">{selectedMusician.description}"</p>
+          <h2 className="leading-10">
+            {" "}
+            <strong>Name</strong> : {selectedMusician.name}
+          </h2>
+          <h2 className="leading-10">
+            {" "}
+            <strong>Instruments</strong> : {selectedMusician.category}
+          </h2>
+          <h2 className="leading-10">
+            {" "}
+            <strong>Years of experiences</strong> :{" "}
+            {selectedMusician.yearsPlayingMusic} years
+          </h2>
+          <h2 className=" leading-10">
+            {" "}
+            <strong>Address</strong> : {selectedMusician.address}
+          </h2>
+          <h2 className=" leading-10">
+            {" "}
+            <strong>Joined ባለበገና</strong> :{" "}
+            {formatDistanceToNow(new Date(selectedMusician.createdAt), {
+              addSuffix: true,
+            })}
+          </h2>
 
           {/* Phone button with a link to dial the number */}
           <a
