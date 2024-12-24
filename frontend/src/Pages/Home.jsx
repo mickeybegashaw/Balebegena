@@ -101,7 +101,6 @@ const Home = () => {
         await fetchAll();
       }
 
-      // Navigate to the search-results page after fetching data
       navigate("/search-results");
     } catch (error) {
       console.error("Error while searching musicians:", error);

@@ -10,9 +10,11 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { MusicianContext } from "./context/musiciansContext.jsx";
 import NotFound from "./Pages/notFound.jsx";
+import { AuthContext } from "./context/userContext.jsx";
 
 const App = () => {
   const { selectedMusician, musicians } = useContext(MusicianContext);
+  const { user } = useContext(AuthContext);
   return (
     <Router>
       <Header />
@@ -29,9 +31,9 @@ const App = () => {
             selectedMusician ? <SelectedMusicians /> : <Navigate to={"/"} />
           }
         />
-        <Route path="/user/login" element={<Login />} />
-        <Route path="/user/register" element={<Register />} />
-        <Route path="/musician-post" element={<MusicianPostingFom />} />
+        <Route path="/user/login" element={user? <Navigate to={'/'}/> : <Login />} />
+        <Route path="/user/register" element={user? <Navigate to={"/"}/> : <Register />} />
+        <Route path="/musician-post" element={user?<MusicianPostingFom />: <Navigate to={'/user/login'} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

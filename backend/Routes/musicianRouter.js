@@ -6,13 +6,14 @@ import { createNewMusician,
         getAllMusicians,
         getCategoryAndAddressFilteredMusician,
         getSpecificMusicians} from "../controller/musicianController.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 
 const upload = multer({ dest: "uploads/" });
 
 const router = express.Router();
 
 //post musicians
-router.post('/', upload.single('profilePicture'), createNewMusician);
+router.post('/',requireAuth , upload.single('profilePicture'), createNewMusician);
 
 //get the address filtered musician
 router.get("/address",getAddressFilteredMusician );
