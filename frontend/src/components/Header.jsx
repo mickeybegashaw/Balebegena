@@ -26,22 +26,27 @@ const Header = () => {
 
         <div className="hidden md:block">
           {user && (
-            <>
-            {user.email}
-              <Link to={"/musician-post"}>
-                <span className="ml-14">Post Musician</span>
-              </Link>
-              <span className="ml-14">My Account</span>
-              <span className="ml-14" onClick={handelLogOut}>
-                Log out
-              </span>
-            </>
+            <div className="flex items-end gap-1 flex-col">
+              <p className="text-base font-extralight"> {user.email}</p>
+              <div>
+                <Link to={"/musician-post"}>
+                  <span className="ml-14 ">Post Musician</span>
+                </Link>
+                <span className="ml-14 ">My Account</span>
+                <span className="ml-14 " onClick={handelLogOut}>
+                  Log out
+                </span>
+              </div>
+            </div>
           )}
 
           {!user && (
             <>
               <Link to={"/user/login"}>
-                <span title="Log in to My account" className="ml-14">
+                <span
+                  title="Log in to My account"
+                  className="ml-14 border p-1 rounded"
+                >
                   Log in
                 </span>
               </Link>
