@@ -61,6 +61,7 @@ const SearchResults = () => {
                   <img
                     className="w-full h-60 object-cover"
                     src={musician.image.url || defaultImage}
+                    loading="lazy"
                     alt="musician image"
                   />
                   <h2 className="bg-stone-900 font-bold text-2xl md:text-lg lg:text-2xl uppercase text-center">
