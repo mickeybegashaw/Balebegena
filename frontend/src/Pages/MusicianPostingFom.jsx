@@ -102,7 +102,7 @@ const MusicianPostingFom = () => {
         <h2 className="font-bold text-2xl mb-2 md:text-3xl lg:text-4xl">
           Profile Information
         </h2>
-        <p className="mb-10 md:text-lg">
+        <p className="mb-10 md:text-lg text-center">
           Fill the information below to make a post
         </p>
 
