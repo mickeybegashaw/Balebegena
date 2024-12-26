@@ -27,6 +27,7 @@ const Header = () => {
         <div className="hidden md:block">
           {user && (
             <>
+            {user.email}
               <Link to={"/musician-post"}>
                 <span className="ml-14">Post Musician</span>
               </Link>
