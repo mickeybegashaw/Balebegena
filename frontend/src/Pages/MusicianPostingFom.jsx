@@ -2,7 +2,7 @@ import React, { useState ,useContext } from "react";
 import { CITIES } from "../Cites";
 import axios from "axios";
 import { AuthContext } from "../context/userContext";
-
+const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const MusicianPostingFom = () => {
   const { user } = useContext(AuthContext);
   const [error ,setError]=useState(null)
@@ -74,7 +74,7 @@ const MusicianPostingFom = () => {
       }
   
       // Send the POST request with the FormData object
-      const response = await axios.post("http://localhost:3000/musician/api/", formDataToSend, {
+      const response = await axios.post(`${baseUrl}/musician/api/`, formDataToSend, {
         headers: {
           Authorization: `Bearer ${user.token}`, // Add authorization header
           "Content-Type": "multipart/form-data",  // Set content type to multipart/form-data

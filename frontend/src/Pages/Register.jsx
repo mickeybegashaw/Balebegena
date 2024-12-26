@@ -4,7 +4,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { AuthContext } from "../context/userContext.jsx";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
-
+const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +32,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/api/register",
+        `${baseUrl}/user/api/register`,
         {
           firstName: firstName,
           lastName: lastName,

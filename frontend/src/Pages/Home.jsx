@@ -4,6 +4,8 @@ import { MusicianContext } from "../context/musiciansContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 import axios from "axios";
+const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
+
 const Home = () => {
   const { setMusicians, setLoading, loading } = useContext(MusicianContext);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -23,7 +25,7 @@ const Home = () => {
       setLoading(true);
       setMusicians([]);
       const response = await axios.get(
-        "http://localhost:3000/musician/api/category",
+        `${baseUrl}/musician/api/category`,
         {
           params: { category },
         }
@@ -40,7 +42,7 @@ const Home = () => {
   const fetchAll = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/musician/api/");
+      const response = await axios.get(`${baseUrl}/musician/api/`);
 
       setMusicians(response.data);
     } catch (error) {
@@ -55,7 +57,7 @@ const Home = () => {
       setLoading(true);
       setMusicians([]);
       const response = await axios.get(
-        "http://localhost:3000/musician/api/address",
+        `${baseUrl}/musician/api/address`,
         {
           params: { address },
         }
@@ -73,7 +75,7 @@ const Home = () => {
       setLoading(true);
       setMusicians([]);
       const response = await axios.get(
-        "http://localhost:3000/musician/api/both",
+        `${baseUrl}/musician/api/both`,
         {
           params: { address, category },
         }

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 import defaultImage from "../assets/avater.png";
 import { formatDistanceToNow } from "date-fns";
-
+const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const SearchResults = () => {
   const navigate = useNavigate();
   const { musicians, setSelectedMusician, setLoading, setError, loading } =
@@ -17,7 +17,7 @@ const SearchResults = () => {
     setLoading(true);
     try {
       const selected = await axios.get(
-        `http://localhost:3000/musician/api/${id}` // API to fetch musician by ID
+        `${baseUrl}/musician/api/${id}` // API to fetch musician by ID
       );
       setSelectedMusician(selected.data);
       navigate("/selected-musician"); // Store selected musician in context

@@ -4,6 +4,7 @@ import axios from "axios";
 import { FadeLoader } from "react-spinners";
 import { AuthContext } from "../context/userContext";
 import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggling
+const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/api/logIn",
+       `${baseUrl}/user/api/logIn`,
         {
           email: email,
           password: password,
