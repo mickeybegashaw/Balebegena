@@ -54,10 +54,8 @@ const MusicianPostingFom = () => {
     try {
       setError(null);
       setLoading(true)
-      // Create a FormData object to send both regular fields and the image
       const formDataToSend = new FormData();
   
-      // Append form data
       formDataToSend.append("name", formData.name);
       formDataToSend.append("phoneNumber", formData.phoneNumber);
       formDataToSend.append("address", formData.city);
@@ -65,7 +63,6 @@ const MusicianPostingFom = () => {
       formDataToSend.append("description", formData.description);
       formDataToSend.append("yearsPlayingMusic", formData.yearsPlaying);
   
-      // Append the image (profile picture)
       if (formData.profilePicture) {
         formDataToSend.append("profilePicture", formData.profilePicture);
       } else {
@@ -73,11 +70,10 @@ const MusicianPostingFom = () => {
         return;
       }
   
-      // Send the POST request with the FormData object
       const response = await axios.post(`${baseUrl}/musician/api/`, formDataToSend, {
         headers: {
-          Authorization: `Bearer ${user.token}`, // Add authorization header
-          "Content-Type": "multipart/form-data",  // Set content type to multipart/form-data
+          Authorization: `Bearer ${user.token}`, 
+          "Content-Type": "multipart/form-data",  
         },
       });
   

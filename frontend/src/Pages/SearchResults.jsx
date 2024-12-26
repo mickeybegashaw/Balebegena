@@ -20,7 +20,7 @@ const SearchResults = () => {
         `${baseUrl}/musician/api/${id}` // API to fetch musician by ID
       );
       setSelectedMusician(selected.data);
-      navigate("/selected-musician"); // Store selected musician in context
+      navigate("/selected-musician");
     } catch (error) {
       setError("Failed to load musician");
     } finally {
@@ -54,7 +54,7 @@ const SearchResults = () => {
             <div className="bg-white rounded w-11/12 flex flex-wrap  justify-around p-5 gap-3 h-full">
               {musicians.map((musician) => (
                 <div
-                  onClick={() => handelSelectedMusician(musician._id)} // Handle musician selection
+                  onClick={() => handelSelectedMusician(musician._id)} 
                   key={musician._id}
                   className="bg-stone-700 text-white w-full h-1/3 mb-5 md:w-1/4"
                 >

@@ -3,7 +3,7 @@ import { useState , useContext } from "react";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
 import { AuthContext } from "../context/userContext";
-import { BiShow, BiHide } from "react-icons/bi"; // Added BiHide icon for toggling
+import { BiShow, BiHide } from "react-icons/bi"; 
 const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Login = () => {
