@@ -41,6 +41,7 @@ const register= async (req,res)=>{
 
   } catch (error) {
     console.log(error)
+    res.status(500).json("Something went wrong please try again later")
   }
   
 }
@@ -62,7 +63,7 @@ const logIn= async (req,res)=>{
     //match pass
     const much = await bcrypt.compare(password , user.password )
     if (!much) {
-      return res.status(400).json("Incorrect password please Try again ")
+      return res.status(400).json("Incorrect Email or password please Try again ")
     }
 
     //send token
@@ -73,6 +74,7 @@ const logIn= async (req,res)=>{
 
   } catch (error) {
     console.log(error)
+    res.status(500).json("Something went wrong please try again later")
   }
 }
 
