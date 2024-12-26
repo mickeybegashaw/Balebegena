@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-red-700  h-16  cursor-pointer  ">
+    <header className="bg-red-700 w-screen h-16 md:h-20  cursor-pointer  ">
       <div className="text-neutral-50  font-bold flex justify-between mx-10 md:mx-24 items-center h-16">
         <Link to={"/"}>
           <h1 className="text-2xl md:text-3xl">ባለበገና</h1>
@@ -26,7 +26,7 @@ const Header = () => {
 
         <div className="hidden md:block">
           {user && (
-            <div className="flex items-end gap-1 flex-col">
+            <div className="flex items-end gap-2 flex-col">
               <p className="text-base font-extralight"> {user.email}</p>
               <div>
                 <Link to={"/musician-post"}>
@@ -45,7 +45,7 @@ const Header = () => {
               <Link to={"/user/login"}>
                 <span
                   title="Log in to My account"
-                  className="ml-14 border p-1 rounded"
+                  className="ml-14"
                 >
                   Log in
                 </span>
