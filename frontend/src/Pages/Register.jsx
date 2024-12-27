@@ -13,8 +13,9 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const { user, setUser, setRegisterError, registerError, loading, setLoading } =
-    useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
+  const [registerError, setRegisterError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handelLinkClick = () => {
     navigate("/user/login");
@@ -31,15 +32,12 @@ const Register = () => {
     setRegisterError(null);
 
     try {
-      const response = await axios.post(
-        `${baseUrl}/user/api/register`,
-        {
-          firstName: firstName,
-          lastName: lastName,
-          password: passWord,
-          email: email,
-        }
-      );
+      const response = await axios.post(`${baseUrl}/user/api/register`, {
+        firstName: firstName,
+        lastName: lastName,
+        password: passWord,
+        email: email,
+      });
 
       if (response.status >= 200 && response.status < 300) {
         setRegisterError(null);
@@ -52,7 +50,9 @@ const Register = () => {
       }
     } catch (error) {
       setLoading(false);
-      setRegisterError(error.response ? error.response.data : "An error occurred");
+      setRegisterError(
+        error.response ? error.response.data : "An error occurred"
+      );
     }
   };
 
@@ -130,7 +130,9 @@ const Register = () => {
               className="mt-2 p-2 w-full border-2 border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </label>
-         {registerError&&<p className="text-red-600 text-xl m:text-2xl">{registerError}</p>} 
+          {registerError && (
+            <p className="text-red-600 text-xl m:text-2xl">{registerError}</p>
+          )}
           <button
             disabled={loading}
             type="submit"

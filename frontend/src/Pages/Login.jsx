@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useState , useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { FadeLoader } from "react-spinners";
 import { AuthContext } from "../context/userContext";
-import { BiShow, BiHide } from "react-icons/bi"; 
+import { BiShow, BiHide } from "react-icons/bi";
 const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, logInError, setLogInError, loading, setLoading } =
-  useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
+  const [logInError, setLogInError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -30,13 +31,10 @@ const Login = () => {
     setLogInError(null);
 
     try {
-      const response = await axios.post(
-       `${baseUrl}/user/api/logIn`,
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(`${baseUrl}/user/api/logIn`, {
+        email: email,
+        password: password,
+      });
 
       if (response.status >= 200 && response.status < 300) {
         setLogInError(null);
@@ -104,7 +102,9 @@ const Login = () => {
               </button>
             </div>
           </label>
-          {logInError&&<p className="text-red-600 text-xl m:text-2xl">{logInError}</p>} 
+          {logInError && (
+            <p className="text-red-600 text-xl m:text-2xl">{logInError}</p>
+          )}
 
           <button
             disabled={loading}
