@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MusicianContext } from "../context/musiciansContext.jsx";
 import { SlLocationPin } from "react-icons/sl";
 import axios from "axios";
@@ -9,8 +9,9 @@ import { formatDistanceToNow } from "date-fns";
 const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const SearchResults = () => {
   const navigate = useNavigate();
-  const { musicians, setSelectedMusician, setLoading, setError, loading } =
-    useContext(MusicianContext);
+  const { musicians, setSelectedMusician } = useContext(MusicianContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // Function to handle the selection of a musician
   const handelSelectedMusician = async (id) => {
@@ -54,7 +55,7 @@ const SearchResults = () => {
             <div className="bg-white rounded w-11/12 flex flex-wrap  justify-around p-5 gap-3 h-full">
               {musicians.map((musician) => (
                 <div
-                  onClick={() => handelSelectedMusician(musician._id)} 
+                  onClick={() => handelSelectedMusician(musician._id)}
                   key={musician._id}
                   className="bg-stone-700 text-white w-full h-1/3 mb-5 md:w-1/4"
                 >

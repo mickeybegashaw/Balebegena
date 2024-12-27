@@ -7,9 +7,11 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_REACT_APP_API_URL;
 
 const Home = () => {
-  const { setMusicians, setLoading, loading } = useContext(MusicianContext);
+  const { setMusicians } = useContext(MusicianContext);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [loading,setLoading]=useState(false)
+
   const navigate = useNavigate();
 
   const handleCategoryChange = (event) => {
