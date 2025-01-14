@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Home from "./Pages/Home";
-import Login from "./Pages/login.jsx";
+import Login from "./Pages/LogInn.jsx";
 import Register from "./Pages/Register.jsx";
 import SearchResults from "./Pages/SearchResults";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
